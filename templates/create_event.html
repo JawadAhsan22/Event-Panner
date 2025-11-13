@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Create Event</title>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div>
+            <a href="{{ url_for('dashboard') }}"><b>Event Planner</b></a>
+        </div>
+        <div>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('my_events') }}">My Events</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <!-- MAIN CARD -->
+    <div class="container">
+        <h1>Create Event</h1>
+
+        <!-- FLASH MESSAGES -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- FORM CARD -->
+        <div class="card">
+            <form method="post">
+
+                <label>Event Title</label>
+                <input type="text" name="title" required>
+
+                <label>Description</label>
+                <textarea name="description" rows="3" required></textarea>
+
+                <label>Location</label>
+                <input type="text" name="location" required>
+
+                <label>Date</label>
+                <input type="date" name="date" required>
+
+                <label>Time</label>
+                <input type="time" name="time" required>
+
+                <button type="submit">Create Event</button>
+            </form>
+        </div>
+
+        <div style="text-align:center; margin-top:15px;">
+            <a class="btn" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

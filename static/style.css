@@ -1,0 +1,200 @@
+/* ------------------------------
+    GLOBAL THEME COLORS
+------------------------------ */
+:root {
+    --navy: #0c1a2a;
+    --navy-light: #14273d;
+    --gold: #d4af37;
+    --gold-light: #e4c766;
+    --white: #ffffff;
+    --gray: #f0f0f0;
+    --text: #eeeeee;
+    --input-bg: #1a2d44;
+}
+
+/* Remove horizontal scroll globally */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    max-width: 100%;
+    font-family: "Poppins", sans-serif;
+    background: var(--navy);
+    color: var(--text);
+}
+
+/* ==============================
+   CONTAINER
+============================== */
+.container {
+    width: min(90%, 900px);
+    margin: 60px auto;
+    padding: 30px 20px;
+    background: var(--navy-light);
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* ==============================
+   HEADERS
+============================== */
+h1, h2, h3 {
+    color: var(--gold);
+    text-align: center;
+    font-weight: 600;
+}
+
+/* ==============================
+   LINKS
+============================== */
+a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--gold-light);
+}
+
+/* ==============================
+   INPUTS & FORMS
+============================== */
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    background: var(--input-bg);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--gold-light);
+    box-shadow: 0 0 8px var(--gold-light);
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+button, .btn {
+    background: var(--gold);
+    border: none;
+    padding: 13px 22px;
+    color: var(--navy);
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.3s;
+    margin-top: 12px;
+}
+
+button:hover, .btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(212,175,55,0.3);
+}
+
+/* Make dashboard button text white */
+.card.btn,
+.card.btn * {
+    color: var(--white) !important;
+}
+
+/* ==============================
+   CARD
+============================== */
+.card {
+    background: var(--navy-light);
+    padding: 20px;
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    margin-bottom: 18px;
+    box-shadow: 0px 0px 12px rgba(212,175,55,0.2);
+}
+
+/* ==============================
+   NAVBAR
+============================== */
+.navbar {
+    width: 100%;
+    padding: 15px 30px;
+    background: var(--navy-light);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.navbar div:last-child {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.navbar a {
+    white-space: nowrap;
+    font-size: 18px;
+    color: var(--gold);
+}
+
+/* ==============================
+   FLASH MESSAGES
+============================== */
+.flash {
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+.flash-success { background: #1b4d2d; color: #b9ffca; }
+.flash-error { background: #6b1e1e; color: #ffbaba; }
+.flash-warning { background: #705000; color: #ffe9b3; }
+
+/* ==============================
+   TABLES
+============================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--navy-light);
+    color: var(--white);
+    display: block;
+    overflow-x: auto;
+}
+
+table th, table td {
+    border: 1px solid var(--gold);
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background: var(--gold);
+    color: var(--navy);
+}
+
+/* ==============================
+   DASHBOARD GRID
+============================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    width: 100%;
+    justify-items: center;
+}
+
+.dashboard-grid .card.btn {
+    width: 100%;
+    max-width: 330px;
+}

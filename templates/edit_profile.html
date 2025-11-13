@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div>
+            <a href="{{ url_for('dashboard') }}"><b>Event Planner</b></a>
+        </div>
+        <div>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Edit Profile</h1>
+
+        <!-- FLASH MESSAGES -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- PROFILE CARD -->
+        <div class="card">
+
+            <form method="post">
+
+                <label>Name</label>
+                <input type="text" name="name" value="{{ user[1] }}" required>
+
+                <label>Email</label>
+                <input type="email" name="email" value="{{ user[2] }}" required>
+
+                <button type="submit">Update Profile</button>
+
+            </form>
+
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="{{ url_for('dashboard') }}" class="btn">Cancel</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

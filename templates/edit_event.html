@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div>
+            <a href="{{ url_for('dashboard') }}"><b>Event Planner</b></a>
+        </div>
+        <div>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('my_events') }}">My Events</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Edit Event</h1>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- CARD FORM -->
+        <div class="card">
+            <form method="post">
+
+                <label>Event Title</label>
+                <input type="text" name="title" value="{{ event[0] }}" required>
+
+                <label>Description</label>
+                <textarea name="description" rows="3" required>{{ event[1] }}</textarea>
+
+                <label>Location</label>
+                <input type="text" name="location" value="{{ event[2] }}" required>
+
+                <label>Date</label>
+                <input type="date" name="date" value="{{ event[3][:10] }}" required>
+
+                <label>Time</label>
+                <input type="time" name="time" value="{{ event[3][11:] }}" required>
+
+                <button type="submit">Update Event</button>
+            </form>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

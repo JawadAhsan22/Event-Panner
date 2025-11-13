@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Invitations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div>
+            <a href="{{ url_for('dashboard') }}"><b>Event Planner</b></a>
+        </div>
+        <div>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Your Event Invitations</h1>
+
+        <!-- FLASH MESSAGES -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if invitations %}
+            <div style="margin-top:25px;">
+
+                {% for invitation in invitations %}
+                    <!-- Each Invitation Card -->
+                    <div class="card" style="margin-bottom:20px;">
+
+                        <h3 style="margin-top:0;">{{ invitation[0] }}</h3>
+                        <p><b>Date:</b> {{ invitation[1] }}</p>
+                        <p><b>Status:</b> {{ invitation[2] }}</p>
+
+                        <div style="display:flex; gap:15px; margin-top:15px;">
+
+                            <!-- Accept Button -->
+                            <form method="post" 
+                                action="{{ url_for('respond_invitation', invitation_id=invitation[3], response='Accept') }}">
+                                <button class="btn" type="submit" style="background: #3fa55b;">Accept</button>
+                            </form>
+
+                            <!-- Decline Button -->
+                            <form method="post" 
+                                action="{{ url_for('respond_invitation', invitation_id=invitation[3], response='Decline') }}">
+                                <button class="btn" type="submit" style="background: #c14646;">Decline</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+            <p style="text-align:center; margin-top:30px; font-size:18px;">
+                You have no invitations at the moment.
+            </p>
+        {% endif %}
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

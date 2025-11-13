@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div>
+            <a href="{{ url_for('index') }}"><b>Event Planner</b></a>
+        </div>
+        <div>
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Create an Account</h1>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Registration Card -->
+        <div class="card">
+
+            <form method="post">
+
+                <label>Name</label>
+                <input type="text" name="name" required>
+
+                <label>Email</label>
+                <input type="email" name="email" required>
+
+                <label>Password</label>
+                <input type="password" name="password" required>
+
+                <button type="submit">Register</button>
+            </form>
+
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a class="btn" href="{{ url_for('login') }}">Already have an account? Login</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
