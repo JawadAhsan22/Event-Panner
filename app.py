@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+import os
 from flask import Flask, request, redirect, url_for, render_template, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Mail, Message
@@ -9,8 +12,9 @@ app.secret_key = 'your_very_secret_key'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'a.jawad2731@gmail.com'
-app.config['MAIL_PASSWORD'] = 'emyi rhon npyr qcum'
+app.config['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME")
+app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")
+app.secret_key = os.getenv("SECRET_KEY")
 app.config['MAIL_DEFAULT_SENDER'] = 'a.jawad2731@gmail.com'
 
 mail = Mail(app)
